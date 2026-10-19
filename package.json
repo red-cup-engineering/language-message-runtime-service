@@ -29,5 +29,9 @@
   "files": [
     "src",
     "scripts/project-message-candidate-readings.mjs"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/language-message-runtime-service.git"
+  }
 }
