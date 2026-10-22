@@ -41,6 +41,8 @@ competent decision as the normative bridge, then author and independently
 receive applicable conditions under the current canonical schema. Merely
 passing this candidate parse does not do those steps.
 
-Run `npm test` for the deterministic source-span and refusal controls. These
+Run `npm test` for deterministic source-span and refusal controls, or
+`npm run test:integration` in a correctly installed workspace to exercise the
+real Communicating parser. These
 unit tests exercise the pure projector without treating a fixture as a live
 provider, installation, schema admission or independent requirement receipt.
