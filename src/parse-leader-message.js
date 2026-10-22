@@ -11,6 +11,7 @@ import {
   parseCommunicationForest,
 } from "@red-cup-engineering/communicating";
 import { rawBundle } from "@lenticule-science/english-language-algebra";
+import { projectMessageClaimCandidates } from "./project-message-claim-candidates.mjs";
 import {
   EMPTY_WITNESS_ROOT,
   identifyJsonSemanticContent,
@@ -42,14 +43,15 @@ export function parseLeaderMessage(text, { bundle = rawBundle, languageFiber = D
   const forest = parseCommunicationForest(admitCommunication(text), load(bundle));
   const discourse = discourseStateOfForest(forest);
   const languageBundleToken = semanticJsonId(bundle, "lenticule.english-language-fiber.bundle/v1");
+  const source = Object.freeze({
+    token: semanticJsonId(text, "lenticule.leader-message.source-text/v2"),
+    length: text.length,
+    text,
+  });
   const body = {
     kind: "lenticule-science.leader-message-parse/v2",
     candidateReading: true,
-    source: Object.freeze({
-      token: semanticJsonId(text, "lenticule.leader-message.source-text/v2"),
-      length: text.length,
-      text,
-    }),
+    source,
     language: Object.freeze({
       fiber: languageFiber,
       contentToken: languageBundleToken,
@@ -59,10 +61,12 @@ export function parseLeaderMessage(text, { bundle = rawBundle, languageFiber = D
     discourse,
     ambiguity: Object.freeze({ count: forest.ambiguity, obstructions: forest.obstructions }),
     repairObligations: repairObligations(forest, discourse),
+    claimCandidates: projectMessageClaimCandidates({ source, forest, discourse }),
     limitations: Object.freeze([
       "candidate linguistic reading only; no speaker intent, customer record, or settlement authority is inferred",
       "ambiguity and repair obligations remain explicit rather than being silently resolved",
       "this parser neither applies interpretive frame maps nor writes customer territory",
+      "source-spanned candidate claims and acts are neither verified facts nor binding requirements; normative adoption remains separate",
     ]),
   };
   // The source text has one canonical content identity.  A candidate reading
