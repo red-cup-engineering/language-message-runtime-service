@@ -20,7 +20,7 @@
     "@red-cup-engineering/witness-journal-document-service": "workspace:*",
     "@red-cup-engineering/computer-content-address-engineering-services-section": "workspace:*"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "exports": {
     ".": "./src/parse-leader-message.js",
     "./legacy-linguistics-relational-wire": "./src/legacy-linguistics-relational-wire.js",
@@ -33,5 +33,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/red-cup-engineering/language-message-runtime-service.git"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/561-group/.github/blob/main/TIPS.md"
   }
 }
